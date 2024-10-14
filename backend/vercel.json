@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/favicon.ico",
+      "dest": "backend/index.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "backend/index.js"  
+      "dest": "backend/index.js"
     }
   ]
 }
