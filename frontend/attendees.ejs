@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Attendee List</title>
+</head>
+<body class="bg-[#131313]">
+
+  <%- include('./partials/navbar.ejs') %>
+  <h1 class="text-3xl text-center text-white m-12">
+    Attendee List
+  </h1>
+
+  <div class="justify-center h-full flex">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-1/2">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Username
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Email Address
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (attendees.length > 0) { %>
+            <% attendees.forEach(attendee => { %>
+              <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <%= attendee.username %>
+                </th>
+                <td class="px-6 py-4">
+                  <%= attendee.email %>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="2" class="text-center text-white py-4">No Attendees to display...</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%- include('./partials/create-button.ejs') %>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#131313]">
+    <%- include('./partials/navbar.ejs')%>
+    <h1 class="text-xl font-bold text-center text-white mt-20">Event List</h1>
+
+    <% if(events.length > 0) { %> <% events.forEach(event => { %>
+    <div class="  flex justify-center m-12">
+      <div
+        class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      >
+        <a href="/<%=event._id%>">
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            <%= event.title %>
+          </h5>
+        </a>
+        <a href="/<%=event._id%>">
+          <p class="mb-2 text-l tracking-tight text-gray-900 dark:text-white">
+            Date: <%= new Date(event.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })  %>
+          </p>
+        </a>
+        <a
+          href="/<%=event._id%>"
+          class="inline-flex m-2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Event Details
+          <svg
+            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </a>
+        <a
+          href="/<%=event._id%>/rsvp"
+          class="inline-flex m-2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          RSVP Now!!
+          <svg
+            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <% }) %> <% } else {%>
+    <p class="text-white text-center m-12">No Events to display...</p>
+    <% } %> <%- include('./partials/create-button.ejs')%>
+  </body>
+</html>
