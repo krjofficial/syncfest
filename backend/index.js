@@ -11,13 +11,16 @@ const app = express();
 // DB connection
 const PORT = process.env.PORT || 3000;
 mongoose.connect(DB_URL)
-  .then((result) => {
+  .then(() => {
+    console.log("Connected to Database");
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`)
-    })
-    console.log("Connected to Database")
-  }) // listen for requests only when cluster is connected
-  .catch((error) => console.error("Connection Error:", error))
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Connection Error:", error.message);
+    process.exit(1); // Stop the server if the connection fails
+  });
 
 // Middleware 
 app.use(morgan('dev'));
