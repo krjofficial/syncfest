@@ -32,6 +32,10 @@ app.set('view engine', 'ejs');
 // Define the path for your views (EJS templates)
 app.set('views', path.join(__dirname, '../frontend'));
 
+
+app.get('/test', (req, res) => {
+  res.send("Test route is working!");
+});
 app.get('/favicon.ico', (req, res) => res.status(204));
 app.use('/', routes);
 
